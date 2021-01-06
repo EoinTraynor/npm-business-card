@@ -1,0 +1,14 @@
+{
+  "name": "eointraynor",
+  "version": "1.0.0",
+  "description": "My Business Card",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "info": "index.js"
+  },
+  "author": "eointraynor",
+  "license": "ISC"
+}
