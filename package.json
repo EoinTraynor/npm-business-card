@@ -2,6 +2,10 @@
   "name": "eointraynor",
   "version": "1.0.0",
   "description": "My Business Card",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EoinTraynor/npm-digital-business-card.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +13,11 @@
   "bin": {
     "info": "index.js"
   },
+  "keywords": [
+    "npm business card",
+    "npx business card",
+    "business card"
+  ],
   "author": "eointraynor",
   "license": "ISC"
 }
