@@ -6,12 +6,12 @@
     "type": "git",
     "url": "https://github.com/EoinTraynor/npm-digital-business-card.git"
   },
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
   "bin": {
-    "info": "index.js"
+    "info": "src/index.js"
   },
   "keywords": [
     "npm business card",
@@ -19,5 +19,15 @@
     "business card"
   ],
   "author": "eointraynor",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "boxen": "^5.0.1",
+    "chalk": "^4.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "nodemon": "^2.0.7"
+  }
 }
