@@ -6,13 +6,21 @@
     "type": "git",
     "url": "https://github.com/EoinTraynor/npm-digital-business-card.git"
   },
-  "main": "src/index.js",
-  "scripts": {
-    "dev": "nodemon index.js"
-  },
+  "homepage": "https://github.com/EoinTraynor/npm-digital-business-card",
+    "bugs": {
+        "url": "https://github.com/EoinTraynor/npm-digital-business-card/issues"
+    },
+  "main": "dist/index.js",
   "bin": {
-    "info": "src/index.js"
+    "info": "dist/index.js"
   },
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "build": "parcel build src/index.js --target node"
+  },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "npm business card",
     "npx business card",
@@ -28,6 +36,7 @@
     "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "parcel-bundler": "^1.12.5"
   }
 }
