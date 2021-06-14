@@ -1,0 +1,12 @@
+# editor
+.vscode
+
+# dependencies
+node_modules
+
+# build
+.cache
+dist
+
+# secrets
+.env*
