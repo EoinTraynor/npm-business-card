@@ -7,18 +7,27 @@ on:
 
 jobs:
   build:
-    name: "Publish Release 🚀 "
+    name: "Build 📦 "
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: node setup
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
+          node-version: 14
       - run: npm ci --ignore-scripts
-      - run: npm build
+      - run: npm run build
+
+  publish-npm:
+    name: "Publish Release 🚀 "
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci --ignore-scripts
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
