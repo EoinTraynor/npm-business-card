@@ -12,4 +12,4 @@ This NPM package is my virtual business card 💼
 npx eointraynor
 ```
 
-<img src="https://github.com/EoinTraynor/npm-digital-business-card/tree/main/docs/assets/npx-eointraynor.gif" width="200">
+<img src="https://raw.githubusercontent.com/EoinTraynor/npm-digital-business-card/main/docs/assets/npx-eointraynor.gif" alt="npx eointraynor gif">
