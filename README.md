@@ -11,3 +11,5 @@ This NPM package is my virtual business card 💼
 ```sh
 npx eointraynor
 ```
+
+<img src="https://github.com/EoinTraynor/npm-digital-business-card/tree/main/docs/assets/npx%20eointraynor.gif" width="200">
