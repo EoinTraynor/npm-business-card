@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-const chalk = require('chalk');
-const boxen = require('boxen');
-const cardInfo = require('./cardConfig.json');
+import boxen from 'boxen';
+import chalk from 'chalk';
+import cardInfo from './cardConfig.js';
 
 const title = chalk.hex('#a6d4fa');
 const info = chalk.hex('#81a2be');
