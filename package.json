@@ -48,7 +48,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "nodemon": "^2.0.19",
-    "parcel": "^2.7.0",
+    "parcel": "^2.8.0",
     "parcel-plugin-clean-dist": "0.0.6",
     "parcel-plugin-shebang": "^1.4.0"
   }
