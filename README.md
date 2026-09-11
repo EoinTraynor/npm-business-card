@@ -4,7 +4,7 @@ Interactive CLI business card published to npm.
 
 [![version](https://img.shields.io/npm/v/eointraynor)](https://www.npmjs.com/package/eointraynor)
 [![downloads](https://img.shields.io/npm/dt/eointraynor)](https://www.npmjs.com/package/eointraynor)
-[![issues](https://img.shields.io/github/issues-raw/EoinTraynor/npm-digital-business-card)](https://github.com/EoinTraynor/npm-digital-business-card/issues)
+[![issues](https://img.shields.io/github/issues-raw/EoinTraynor/npm-business-card)](https://github.com/EoinTraynor/npm-business-card/issues)
 
 ## Usage
 
