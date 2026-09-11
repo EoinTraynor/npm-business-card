@@ -1,7 +1,7 @@
 {
   "name": "eointraynor",
   "version": "1.4.0",
-  "description": "My Business Card",
+  "description": "My Digital Business Card",
   "repository": {
     "type": "git",
     "url": "https://github.com/EoinTraynor/npm-digital-business-card.git"
@@ -12,16 +12,18 @@
   },
   "main": "dist/index.js",
   "bin": {
+    "eointraynor": "dist/index.js",
     "info": "dist/index.js"
   },
   "engines": {
-    "node": "16"
+    "node": ">=20.0.0"
   },
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js",
-    "build": "parcel build src/index.js --no-source-maps",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
     "prepare": "npm run build"
   },
   "files": [
@@ -31,25 +33,20 @@
     "npm business card",
     "npx business card",
     "business card",
-    "chalkjs"
+    "cli"
   ],
   "author": {
     "name": "Eoin Traynor",
-    "email": "eointraynor1@gmail.com",
     "url": "https://eointraynor.com"
   },
   "license": "ISC",
-  "dependencies": {
-    "boxen": "^7.0.0",
-    "chalk": "^5.0.1"
-  },
   "devDependencies": {
-    "eslint": "^8.23.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "nodemon": "^2.0.19",
-    "parcel": "^2.7.0",
-    "parcel-plugin-clean-dist": "0.0.6",
-    "parcel-plugin-shebang": "^1.4.0"
+    "@inquirer/prompts": "^7.2.1",
+    "@types/node": "^22.10.1",
+    "boxen": "^8.0.1",
+    "chalk": "^5.3.0",
+    "open": "^10.1.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
   }
 }
