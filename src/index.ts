@@ -19,7 +19,7 @@ Options:
   }
 
   if (args.includes('--version') || args.includes('-v')) {
-    console.log('1.4.0');
+    console.log('2.0.0');
     return;
   }
 
