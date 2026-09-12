@@ -14,6 +14,10 @@ Run directly via `npx` (no installation required):
 npx eointraynor
 ```
 
+<p align="center">
+  <img src="docs/assets/npx-eointraynor.gif" alt="npx eointraynor demo" width="620">
+</p>
+
 ### Options
 
 ```sh

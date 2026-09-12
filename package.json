@@ -23,6 +23,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "start": "node dist/index.js",
+    "record": "python3 scripts/record.py && agg --theme dracula docs/assets/demo.cast docs/assets/npx-eointraynor.gif",
     "typecheck": "tsc --noEmit",
     "prepare": "npm run build"
   },
