@@ -4,7 +4,7 @@
   "description": "My Digital Business Card",
   "repository": {
     "type": "git",
-    "url": "https://github.com/EoinTraynor/npm-business-card.git"
+    "url": "git+https://github.com/EoinTraynor/npm-business-card.git"
   },
   "homepage": "https://github.com/EoinTraynor/npm-business-card",
   "bugs": {
