@@ -8,26 +8,26 @@ import time
 
 def record():
     cast_path = "docs/assets/demo.cast"
-    gif_path = "docs/assets/npx-eointraynor.gif"
     
     events = []
     current_time = 0.0
     
-    def emit(text, delta=0.05):
+    def emit(text, advance_seconds=0.0):
         nonlocal current_time
-        current_time = round(current_time + delta, 3)
-        events.append([current_time, "o", text])
-        
+        if text:
+            events.append([round(current_time, 3), "o", text])
+        current_time += advance_seconds
+
     # Initial prompt
-    emit("\x1b[32m~\x1b[0m \x1b[1m$\x1b[0m ", 0.0)
+    emit("\x1b[32m~\x1b[0m \x1b[1m$\x1b[0m ", 0.6)
     
     # Type: npx eointraynor
     cmd = "npx eointraynor"
     for ch in cmd:
-        emit(ch, 0.08)
-    emit("\r\n", 0.3)
+        emit(ch, 0.09)
+    emit("\r\n", 0.4)
     
-    # Now run node dist/index.js in a PTY to capture the real terminal output
+    # Run node dist/index.js in a PTY
     master, slave = pty.openpty()
     pid = os.fork()
     if pid == 0:
@@ -45,51 +45,62 @@ def record():
     else:
         os.close(slave)
         
-        start_real = time.time()
-        def read_output(duration):
-            t_end = time.time() + duration
+        def read_chunk(timeout=0.6):
+            chunks = []
+            t_end = time.time() + timeout
             while time.time() < t_end:
                 r, _, _ = select.select([master], [], [], 0.05)
                 if master in r:
                     try:
                         data = os.read(master, 4096)
                         if data:
-                            emit(data.decode("utf-8", errors="replace"), 0.08)
+                            chunks.append(data.decode("utf-8", errors="replace"))
                     except OSError:
                         break
+            return "".join(chunks)
+
+        # 1. Read initial card + menu render
+        initial_out = read_chunk(1.2)
+        # Display card and give viewer 2.5 seconds to read
+        emit(initial_out, 2.5)
         
-        # Capture card and menu
-        read_output(1.5)
-        
-        # Navigate menu: GitHub
+        # 2. Down arrow -> GitHub
         os.write(master, b"\x1b[B")
-        read_output(0.8)
+        out = read_chunk(0.3)
+        emit(out, 1.4)
         
-        # Navigate menu: LinkedIn
+        # 3. Down arrow -> LinkedIn
         os.write(master, b"\x1b[B")
-        read_output(0.8)
+        out = read_chunk(0.3)
+        emit(out, 1.4)
         
-        # Navigate menu: Twitter/X
+        # 4. Down arrow -> Twitter/X
         os.write(master, b"\x1b[B")
-        read_output(0.8)
+        out = read_chunk(0.3)
+        emit(out, 1.4)
         
-        # Navigate menu: Bio
+        # 5. Down arrow -> View About & Bio
         os.write(master, b"\x1b[B")
-        read_output(1.0)
+        out = read_chunk(0.3)
+        emit(out, 1.6)
         
-        # Press Enter on Bio
+        # 6. Press Enter to view bio
         os.write(master, b"\r")
-        read_output(2.5)
+        out = read_chunk(0.6)
+        # Give 3.5 seconds to read the bio!
+        emit(out, 3.5)
         
-        # Navigate to Exit
+        # 7. Down arrow to Exit (option 6 from top)
         for _ in range(5):
             os.write(master, b"\x1b[B")
-            read_output(0.2)
-        read_output(0.8)
+            time.sleep(0.05)
+        out = read_chunk(0.3)
+        emit(out, 1.5)
         
-        # Press Enter to Exit
+        # 8. Press Enter on Exit
         os.write(master, b"\r")
-        read_output(1.2)
+        out = read_chunk(0.5)
+        emit(out, 2.5)
         
         try:
             os.waitpid(pid, 0)
@@ -109,7 +120,7 @@ def record():
             for ev in events:
                 f.write(json.dumps(ev) + "\n")
                 
-        print(f"Recorded {len(events)} events to {cast_path}")
+        print(f"Recorded {len(events)} events with relaxed pacing (total duration: {current_time:.1f}s)")
 
 if __name__ == "__main__":
     record()
