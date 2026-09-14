@@ -39,6 +39,11 @@ export async function runInteractiveMenu(): Promise<void> {
             description: 'Learn more about Eoin',
           },
           {
+            name: `${chalk.hex('#e5c07b')('⚡')} Create your own card`,
+            value: 'create',
+            description: 'Run npx terminalcard init or open github.com/EoinTraynor/terminalcard',
+          },
+          {
             name: `${chalk.hex('#e06c75')('🚪')} Exit`,
             value: 'exit',
             description: 'Close this card',
@@ -71,6 +76,15 @@ export async function runInteractiveMenu(): Promise<void> {
           );
           console.log(`  ${chalk.hex('#abb2bf')(cardConfig.tagline)}`);
           console.log(`  Personal website: ${chalk.hex('#61afef').underline(cardConfig.links.website)}\n`);
+          break;
+        case 'create':
+          console.log(
+            `\n  ${chalk.hex('#61afef').bold('terminalcard')} lets you create and run your own interactive terminal business card!\n`,
+          );
+          console.log(`  To get started, simply run:`);
+          console.log(`    ${chalk.hex('#98c379').bold('npx terminalcard init')}\n`);
+          console.log(`  Repository: ${chalk.hex('#61afef').underline('https://github.com/EoinTraynor/terminalcard')}\n`);
+          await open('https://github.com/EoinTraynor/terminalcard');
           break;
         case 'exit':
           console.log(chalk.hex('#98c379')('\n  👋 Thanks for stopping by! Have a great day.\n'));

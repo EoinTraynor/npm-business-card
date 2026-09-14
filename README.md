@@ -5,6 +5,7 @@ Interactive CLI business card published to npm.
 [![version](https://img.shields.io/npm/v/eointraynor)](https://www.npmjs.com/package/eointraynor)
 [![downloads](https://img.shields.io/npm/dt/eointraynor)](https://www.npmjs.com/package/eointraynor)
 [![issues](https://img.shields.io/github/issues-raw/EoinTraynor/npm-business-card)](https://github.com/EoinTraynor/npm-business-card/issues)
+[![powered by terminalcard](https://img.shields.io/badge/card-terminalcard-61afef?style=flat-square&logo=terminal)](https://github.com/EoinTraynor/terminalcard)
 
 ## Usage
 
@@ -29,6 +30,16 @@ Options:
   -v, --version      Show CLI version
   -h, --help         Show help menu
 ```
+
+## ✨ Create Your Own Card
+
+Want to create your own interactive terminal business card? Run:
+
+```sh
+npx terminalcard init
+```
+
+Check out [`terminalcard`](https://github.com/EoinTraynor/terminalcard) to learn more.
 
 ## Features
 

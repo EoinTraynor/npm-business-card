@@ -3,16 +3,34 @@ import chalk from 'chalk';
 import { cardConfig } from '../config.js';
 
 /**
- * Creates an OSC 8 terminal hyperlink.
- * If the terminal supports it, the user can click directly on the text.
+ * Checks whether the current terminal environment supports OSC 8 hyperlinks.
+ */
+function supportsHyperlink(): boolean {
+  if (process.env.FORCE_HYPERLINK === '0') return false;
+  if (process.env.FORCE_HYPERLINK === '1') return true;
+  return Boolean(
+    process.stdout.isTTY &&
+      (process.env.WT_SESSION ||
+        process.env.TERM_PROGRAM ||
+        process.env.COLORTERM ||
+        process.env.VTE_VERSION),
+  );
+}
+
+/**
+ * Creates an OSC 8 terminal hyperlink if supported.
+ * Falls back to plain styled text on unsupported or legacy terminals.
  */
 export function terminalLink(text: string, url: string): string {
+  if (!supportsHyperlink()) {
+    return text;
+  }
   return `\u001B]8;;${url}\u001B\\${text}\u001B]8;;\u001B\\`;
 }
 
 /**
  * Renders the terminal business card with modern styling,
- * vibrant accents, and OSC 8 clickable hyperlinks.
+ * vibrant accents, OSC 8 clickable hyperlinks, and discoverability footer.
  */
 export function renderCard(): string {
   const name = chalk.hex('#ff4a4a').bold;
@@ -34,10 +52,14 @@ export function renderCard(): string {
     `  ${label('Twitter/X:')} ${terminalLink(url(cardConfig.links.twitter), cardConfig.links.twitter)}`,
   ].join('\n');
 
-  return boxen(cardContent, {
+  const card = boxen(cardContent, {
     padding: { top: 1, bottom: 1, left: 2, right: 3 },
-    margin: { top: 1, bottom: 1, left: 1, right: 1 },
+    margin: { top: 1, bottom: 0, left: 1, right: 1 },
     borderStyle: 'round',
     borderColor: '#4c566a',
   });
+
+  const signature = `  ${chalk.dim('⚡ Powered by ')}${chalk.hex('#61afef')('terminalcard')}${chalk.dim(' · Run ')}${chalk.white.bold('npx terminalcard init')}${chalk.dim(' to create yours')}\n`;
+
+  return `${card}\n${signature}`;
 }
