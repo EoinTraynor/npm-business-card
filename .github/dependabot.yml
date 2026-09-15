@@ -1,15 +1,16 @@
-# Basic dependabot.yml file for NPM
-
 version: 2
 updates:
-  # Enable version updates for npm
   - package-ecosystem: "npm"
-    # Look for `package.json` and `lock` files in the `root` directory
     directory: "/"
-    # Check the npm registry for updates every day (weekdays)
     schedule:
-      interval: "daily"
-    # Always increase the version requirement to match the new version.
-    # Will update package.json
-    versioning-strategy: increase
+      interval: "monthly"
+    open-pull-requests-limit: 2
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    ignore:
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+
 
