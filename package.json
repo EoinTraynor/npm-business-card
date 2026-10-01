@@ -44,7 +44,7 @@
   "devDependencies": {
     "@inquirer/prompts": "^8.7.2",
     "@types/node": "^22.20.2",
-    "boxen": "^8.0.1",
+    "boxen": "^9.0.0",
     "chalk": "^6.0.0",
     "open": "^11.0.4",
     "tsup": "^8.5.1",
